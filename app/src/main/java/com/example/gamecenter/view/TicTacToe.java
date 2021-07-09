@@ -1,19 +1,27 @@
-package com.example.gamecenter;
+package com.example.gamecenter.view;
 
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.gamecenter.R;
+import com.example.gamecenter.model.Player;
 
 public class TicTacToe extends AppCompatActivity implements View.OnClickListener {
 
     Button[][] buttons = new Button[3][3];
     Button resetButton;
+
+    ImageView background;
 
     boolean player1Turn = true;
 
@@ -25,19 +33,35 @@ public class TicTacToe extends AppCompatActivity implements View.OnClickListener
     TextView textViewPlayer1;
     TextView textViewPlayer2;
 
+    Player player1 = new Player("Player 1",player1Points);
+    Player player2 = new Player("Player 2",player1Points);
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tictactoe);
 
+
+
         textViewPlayer1 = findViewById(R.id.text_view_p1);
         textViewPlayer2 = findViewById(R.id.text_view_p2);
+
+
+        /*
+        Bitmap captureImage = (Bitmap) data.getExtras().get("data");
+        background = findViewById(R.id.backgroundIMG);
+        Intent intent = getIntent();
+        background.setImageBitmap((Bitmap) intent.getExtras("captureImage"));
+        */
+
+
 
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 String buttonID = ("button_" + i + j);
-                int resID = getResources().getIdentifier(buttonID, "id", this.getPackageName());
+                //int resID = getResources().getIdentifier(buttonID, "id", this.getPackageName());
                 buttons[i][j] = findViewById(getResources().getIdentifier(buttonID, "id", this.getPackageName()));
                 buttons[i][j].setOnClickListener(this::onClick);
             }
@@ -138,8 +162,8 @@ public class TicTacToe extends AppCompatActivity implements View.OnClickListener
     }
 
     private void updatePointsText() {
-        textViewPlayer1.setText("Player 1: " + player1Points);
-        textViewPlayer2.setText("Player 2: " + player2Points);
+        textViewPlayer1.setText(player1.getPlayerName()+": " + player1Points);
+        textViewPlayer2.setText(player2.getPlayerName()+": " + player2Points);
     }
 
     private void resetBoard() {
