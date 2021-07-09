@@ -11,7 +11,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.widget.Button;
 
-import java.sql.SQLOutput;
+
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
