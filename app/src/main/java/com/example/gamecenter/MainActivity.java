@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             Intent intent = new Intent(this, TicTacToe.class);
             startActivity(intent);
         });
+
+
         snake.setOnClickListener(v -> {
             Intent intent = new Intent(this, Snake.class);
             startActivity(intent);
@@ -64,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             float delta = mAccelCurrent - mAccelLast;
             mAccel = mAccel * 0.9f + delta;
             if (mAccel > 12) {
+                System.exit(0);
             }
         }
 
